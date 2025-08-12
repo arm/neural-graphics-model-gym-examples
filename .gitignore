@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: <text>Copyright 2025 Arm Limited and/or
+# its affiliates <open-source-office@arm.com></text>
+# SPDX-License-Identifier: Apache-2.0
+
+*.pyc
+__pycache__
+.vscode
+.idea
+
+.slangtorch_cache/
+*.lock
+.cache/
+
+venv/
+nb-env/
+
+*.ipynb_checkpoints
+
+data/*
+
+tutorials/nss/checkpoints/*
+tutorials/nss/output/*
+tutorials/nss/tensorboard-logs/*
