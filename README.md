@@ -41,6 +41,7 @@ To run these tutorials, the following are required:
 * Python3.X-venv apt package
 * NVIDIA® CUDA® capable GPU
 * CUDA Toolkit v11.8 or later
+* Git LFS
 
 ### Windows Environment
 For a Windows machine, we support running these examples using [WSL 2](https://learn.microsoft.com/en-us/windows/wsl/about).
