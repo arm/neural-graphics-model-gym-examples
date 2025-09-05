@@ -4,49 +4,47 @@
         "path": {
             "train": "../../data/nss/datasets/train/bistro",
             "validation": "../../data/nss/datasets/val/bistro",
-            "test": "../../data/nss/datasets/test"
+            "test": "../../data/nss/datasets/test/"
         },
         "exposure": 2,
         "tonemapper": "reinhard",
         "health_check": false,
-        "recurrent_samples": 16,
+        "recurrent_samples": 8,
         "gt_augmentation": true,
         "num_workers": 4,
         "prefetch_factor": 1
     },
     "output": {
         "dir": "./output",
-        "export_frame_png": true,
+        "export_frame_png": false,
         "tensorboard_output_dir": "./tensorboard-logs",
         "export": {
-            "vgf_output_dir": "./output/vgf",
-            "dynamic_shape": true
+            "dynamic_shape": true,
+            "vgf_output_dir": "./output/vgf"
         }
     },
     "train": {
         "batch_size": 8,
         "scale": 2.0,
         "seed": 123456,
-        "finetune": false,
-        "pretrained_weights": "../../data/nss/weights/nss_v0.1.0_fp32.pt",
-        "resume": false,
         "perform_validate": false,
-
+        "finetune": false,
+        "resume": false,
+        "pretrained_weights": "../../data/nss/weights/nss_v0.1.0_fp32.pt",
         "fp32": {
-            "number_of_epochs": 15,
+            "number_of_epochs": 4,
             "checkpoints": {
                 "dir": "./checkpoints",
                 "save_frequency": "1"
             },
-            "learning_rate": "2e-3",
+            "learning_rate": "6e-4",
             "cosine_annealing_scheduler_config": {
                 "warmup_percentage": 0.05,
-                "min_lr": 2e-4
+                "min_lr": 6e-5
             }
         },
-
         "qat": {
-            "number_of_epochs": 2,
+            "number_of_epochs": 4,
             "checkpoints": {
                 "dir": "./checkpoints/qat_checkpoints",
                 "save_frequency": "1"
@@ -54,7 +52,7 @@
             "learning_rate": "6e-4",
             "cosine_annealing_scheduler_config": {
                 "warmup_percentage": 0.05,
-                "min_lr": 1e-5
+                "min_lr": 1e-05
             }
         }
     },
@@ -65,4 +63,3 @@
         "shader_accurate": false
     }
 }
-
