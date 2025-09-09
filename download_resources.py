@@ -10,6 +10,7 @@ import huggingface_hub as hf
 weights_dir = Path("data/nss/weights")
 datasets_dir = Path("data/nss/datasets")
 
+
 def download_pretrained_weights():
     """Download pretrained weights .pt files."""
 
@@ -30,7 +31,7 @@ def download_datasets():
         allow_patterns=["*.safetensors"],
         repo_type="dataset",
         local_dir=datasets_dir,
-        revision="42c92f5193aead4fd4281ce8ff5258f66b03ef10",
+        revision="d2cbb646b4b2605657314959680994c72f9ca8ed",
     )
     print(f"Downloaded datasets to {datasets_dir}")
 
@@ -55,8 +56,8 @@ def validate_downloads():
         assert (
             dataset_path.exists() and dataset_path.is_dir()
         ), f"Missing dataset directory: {folder}"
-        safetensors = list(dataset_path.glob("*.safetensors"))
-        assert safetensors, f"No .safetensors files found in {folder}"
+        safetensors = list(dataset_path.rglob("*.safetensors"))
+        assert safetensors, f"No .safetensors files found recursively from {folder}"
         for safetensor in safetensors:
             size = safetensor.stat().st_size
             assert (
