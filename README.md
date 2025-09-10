@@ -18,18 +18,21 @@ SPDX-License-Identifier: Apache-2.0
 ## Introduction
 This repository contains Jupyter® notebook tutorials demonstrating how to use the [Neural Graphics Model Gym](https://github.com/arm/neural-graphics-model-gym) Python® package.
 
-These examples walk through key workflows such as training, finetuning, quantization-aware training, exporting, and evaluation using the **Neural Super Sampling (NSS)** PyTorch model.
+These examples walk through key workflows such as training, fine-tuning, quantization-aware training, exporting, and evaluation using the **Neural Super Sampling (NSS)** PyTorch model.
 
 ### Included tutorials:
 
-#### 1.  [Training, with and without finetuning](./tutorials/nss/model_training_example.ipynb)
-This notebook shows how to train the Neural Super Sampling model from scratch, or with finetuning using pretrained model weights.
+#### 1.  [Training](./tutorials/nss/model_training_example.ipynb)
+This notebook shows how to train the Neural Super Sampling model from scratch.
 
 #### 2. [Quantization-aware training and exporting](./tutorials/nss/model_qat_example.ipynb)
 This notebook shows how to perform quantization-aware training (QAT) and export the Neural Super Sampling model to a `VGF` file.
 
 #### 3. [Evaluation](./tutorials/nss/model_evaluation_example.ipynb)
 This notebook shows how to run evaluation of a trained Neural Super Sampling model on a sample dataset.
+
+#### 4. [Fine-tuning](./tutorials/nss/model_finetuning_example.ipynb)
+This notebook shows how to run fine-tuning of the Neural Super Sampling model using pretrained model weights.
 
 ## Prerequisites
 To run these tutorials, the following are required:
