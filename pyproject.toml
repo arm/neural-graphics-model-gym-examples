@@ -1,0 +1,65 @@
+# SPDX-FileCopyrightText: <text>Copyright 2025 Arm Limited and/or
+# its affiliates <open-source-office@arm.com></text>
+# SPDX-License-Identifier: Apache-2.0
+
+[tool.isort]
+skip = ["nb-env", "venv"]
+profile = "black"
+force_sort_within_sections = false
+order_by_type = false
+lines_between_types = 0
+
+[tool.autoflake]
+exclude = ["nb-env", "venv", "assets", "data"]
+remove-all-unused-imports = true
+remove-unused-variables = true
+recursive = true
+in-place = true
+
+[tool.bandit]
+exclude_dirs = [
+    "./data",
+    "./nb-env",
+    "./tests",
+    "./venv"
+]
+
+[tool.pylint.main]
+ignore-paths = [
+  "^nb-env/",
+  "^venv/"
+]
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = [
+    "attribute-defined-outside-init",
+    "consider-iterating-dictionary",
+    "fixme",
+    "import-error",
+    "missing-module-docstring",
+    "protected-access",
+    "too-few-public-methods",
+    "too-many-instance-attributes",
+    "too-many-arguments",
+    "too-many-locals",
+    "too-many-statements",
+    "unnecessary-lambda-assignment",
+    "useless-parent-delegation",
+    "c-extension-no-member",
+    "logging-fstring-interpolation",
+    "arguments-differ",
+    "invalid-name",
+    "not-callable",
+    "subprocess-run-check"
+]
+
+[tool.nbqa.addopts]
+isort = ["--profile=black"]
+autoflake = ["--remove-all-unused-imports", "--remove-unused-variables"]
+pylint  = ["--disable=wrong-import-order, wrong-import-position, duplicate-code, line-too-long"]
+
+[tool.nbqa.config]
+[tool.nbqa.mutate]
+isort = 1
+autoflake = 1
+black = 1

@@ -4,6 +4,7 @@
 
 *.pyc
 __pycache__
+
 .vscode
 .idea
 
@@ -17,7 +18,8 @@ nb-env/
 *.ipynb_checkpoints
 
 data/*
-
 tutorials/nss/checkpoints/*
 tutorials/nss/output/*
 tutorials/nss/tensorboard-logs/*
+
+report.html
