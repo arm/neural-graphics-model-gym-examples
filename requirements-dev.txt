@@ -2,7 +2,12 @@
 # its affiliates <open-source-office@arm.com></text>
 # SPDX-License-Identifier: Apache-2.0
 
-ng-model-gym @ git+https://github.com/arm/neural-graphics-model-gym.git@v0.1.0
-jupyter==1.1.1
-ipykernel==6.30.0
-huggingface-hub==0.34.3
+autoflake==2.3.1
+bandit==1.7.6
+black==23.12.1
+blocklint==0.2.4
+isort==5.13.2
+nbqa==1.9.1
+pre-commit==3.6.0
+pylint==3.2.6
+reuse==3.0.1

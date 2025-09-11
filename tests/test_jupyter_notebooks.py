@@ -4,7 +4,7 @@
 
 import logging
 import shutil
-import subprocess  # nosec B404
+import subprocess
 import unittest
 from pathlib import Path
 from unittest import TestCase
@@ -19,7 +19,7 @@ class JupyterNotebookTests(TestCase):
     _venv_path = Path("nb-env")
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls):  # pylint: disable=invalid-name
         """Run set up script for running notebooks."""
         notebook_setup = Path("tests/setup_notebook_env.sh")
 
@@ -30,7 +30,7 @@ class JupyterNotebookTests(TestCase):
         assert result.returncode == 0, "Failed to set up notebook environment"
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDownClass(cls):  # pylint: disable=invalid-name
         """Remove the virtual env if it was created by the test."""
         if cls._created_venv and cls._venv_path.exists():
             shutil.rmtree(cls._venv_path)
@@ -49,7 +49,7 @@ class JupyterNotebookTests(TestCase):
             with self.subTest(notebook=notebook.name):
                 completed_process = subprocess.run(
                     [script_path.absolute(), notebook.absolute()], check=False
-                )  # nosec B603
+                )
                 self.assertEqual(completed_process.returncode, 0)
 
 

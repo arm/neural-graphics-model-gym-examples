@@ -1,0 +1,97 @@
+# SPDX-FileCopyrightText: <text>Copyright 2025 Arm Limited and/or
+# its affiliates <open-source-office@arm.com></text>
+# SPDX-License-Identifier: Apache-2.0
+repos:
+  -   repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v6.0.0
+      hooks:
+        # See https://github.com/pre-commit/pre-commit-hooks to add more hooks.
+        -   id: trailing-whitespace
+        -   id: check-yaml
+        -   id: check-json
+
+  -   repo: https://github.com/fsfe/reuse-tool
+      rev: v5.1.0
+      hooks:
+        - id: reuse
+          name: Run copyright check
+
+  -   repo: https://github.com/nbQA-dev/nbQA
+      rev: 1.9.1
+      hooks:
+        # Run pylint on notebooks
+        - id: nbqa-pylint
+          name: Run pylint on notebooks
+          files: \.ipynb$
+          additional_dependencies: [pylint==3.2.6]
+
+        # Run isort on notebooks
+        - id: nbqa-isort
+          name: Run isort on notebooks
+          files: \.ipynb$
+          additional_dependencies: [isort==5.13.2]
+
+        # Run autoflake on notebooks
+        - id: nbqa
+          name: Run autoflake on notebooks
+          entry: nbqa autoflake
+          alias: nbqa-autoflake
+          files: \.ipynb$
+          additional_dependencies: [autoflake==2.3.1]
+
+        # Run black on notebooks
+        - id: nbqa-black
+          name: Run black on notebooks
+          files: \.ipynb$
+          additional_dependencies: [black==23.12.1]
+
+  -   repo: local
+      hooks:
+        # Run autoflake
+        -   id: autoflake
+            name: Run autoflake to remove unused imports
+            entry: autoflake
+            language: system
+            types: [ python ]
+            require_serial: true
+
+        # Run isort
+        -   id: isort
+            name: Run isort to reorder imports
+            entry: isort
+            language: system
+            types: [ python ]
+            require_serial: true
+
+        # Run formatting tool on all scripts
+        -   id: format
+            name: Run formatting
+            entry: black
+            language: python
+            types: [ python ]
+            require_serial: true
+
+        # Run pylint for all Python scripts
+        -   id: pylint
+            name: Run pylint
+            entry: pylint
+            language: python
+            types: [ python ]
+            require_serial: true
+
+        # Run bandit security checks
+        -   id: bandit
+            name: Run security checks
+            entry: bandit -c pyproject.toml -r .
+            language: python
+            pass_filenames: false
+            args:
+              ["-f=html", "-o=report.html"]
+
+        # Run blocklint non-inclusive language checks
+        -   id: blocklint
+            name: Run blocklint non-inclusive language checks
+            entry: blocklint
+            language: python
+            require_serial: true
+            exclude: ^(\.blocklint|pyproject\.toml)$
