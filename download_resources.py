@@ -6,7 +6,6 @@ from pathlib import Path
 
 import huggingface_hub as hf
 
-
 weights_dir = Path("data/nss/weights")
 datasets_dir = Path("data/nss/datasets")
 
@@ -43,11 +42,11 @@ def validate_downloads():
     expected_weights = ["nss_v0.1.0_fp32.pt"]
     for file_name in expected_weights:
         weights_path = weights_dir / file_name
-        assert weights_path.exists(), f"Missing weight file: {file_name}"
+        assert weights_path.exists(), f"Missing weight file: {file_name}"  # nosec B101
         size = weights_path.stat().st_size
         assert (
             size > 100 * 1024
-        ), f"Weight file {file_name} is less than 100KB ({size:.1f} bytes)"
+        ), f"Weight file {file_name} is less than 100KB ({size:.1f} bytes)"  # nosec B101
 
     # Validate datasets
     expected_datasets = ["train", "test", "val"]
@@ -55,14 +54,17 @@ def validate_downloads():
         dataset_path = datasets_dir / folder
         assert (
             dataset_path.exists() and dataset_path.is_dir()
-        ), f"Missing dataset directory: {folder}"
+        ), f"Missing dataset directory: {folder}"  # nosec B101
         safetensors = list(dataset_path.rglob("*.safetensors"))
-        assert safetensors, f"No .safetensors files found recursively from {folder}"
+        assert (
+            safetensors
+        ), f"No .safetensors files found recursively from {folder}"  # nosec B101
         for safetensor in safetensors:
             size = safetensor.stat().st_size
-            assert (
-                size > 25 * 1024 * 1024
-            ), f"Dataset file {safetensor.name} in {folder} is less than 100KB ({size:.1f} KB)"
+            assert size > 25 * 1024 * 1024, (
+                f"Dataset file {safetensor.name} in {folder} "
+                f"is less than 100KB ({size:.1f} KB)"
+            )  # nosec B101
 
 
 if __name__ == "__main__":

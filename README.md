@@ -12,6 +12,7 @@ SPDX-License-Identifier: Apache-2.0
 3. [Setup](#setup)
 4. [Running the tutorials](#running-the-tutorials)
 5. [Testing](#testing)
+6. [Code contributions](#code-contributions)
 6. [License](#license)
 7. [Trademarks and copyrights](#trademarks-and-copyrights)
 
@@ -113,6 +114,39 @@ make test
 Make can be installed with:
 ```bash
 sudo apt install make
+```
+
+## Code contributions
+Before making a pull request for any code changes, you must run the following checks:
+
+```bash
+make test       # Run all tests
+make format     # Format files (black, isort, autoflake)
+make lint       # Lints files (blocklint, pylint)
+make bandit     # Run security check
+make copyright  # Check copyright headers exist for all required files
+```
+
+### pre-commit module
+
+pre-commit is used to run the checks mentioned above when making a new commit.
+
+pre-commit, and any other code checking dependencies, will be installed when running:
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+To install the pre-commit git hook, run the following command
+
+```bash
+pre-commit install
+```
+
+To check that all the pre-commit checks run successfully, run the following command
+
+```bash
+pre-commit run --all-files
 ```
 
 ## License
