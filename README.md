@@ -44,7 +44,7 @@ To run these tutorials, the following are required:
 * Python development package (e.g. `python3-dev`)
 * Python3.X-venv apt package
 * NVIDIA® CUDA® capable GPU
-* CUDA Toolkit v11.8 or later
+* CUDA Toolkit v12.8 or later
 * Git LFS
 
 ### Windows Environment
