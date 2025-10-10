@@ -1,6 +1,11 @@
 {
-    "version": 1,
+    "model": {
+        "name": "NSS",
+        "version": "1"
+    },
     "dataset": {
+        "name": "NSS",
+        "version": "1",
         "path": {
             "train": "../../data/nss/datasets/train/bistro",
             "validation": "../../data/nss/datasets/val/bistro",
@@ -27,37 +32,42 @@
         "batch_size": 8,
         "scale": 2.0,
         "seed": 123456,
-        "perform_validate": false,
-        "finetune": false,
+        "perform_validate": true,
+        "validate_frequency": 1,
+        "finetune": true,
         "resume": false,
         "pretrained_weights": "../../data/nss/weights/nss_v0.1.0_fp32.pt",
+        "loss_fn": "loss_v1",
         "fp32": {
             "number_of_epochs": 4,
             "checkpoints": {
-                "dir": "./checkpoints",
-                "save_frequency": "1"
+                "dir": "./checkpoints"
             },
-            "learning_rate": "6e-4",
-            "cosine_annealing_scheduler_config": {
+            "lr_scheduler": {
+                "type": "cosine_annealing",
                 "warmup_percentage": 0.05,
                 "min_lr": 6e-5
+            },
+            "optimizer": {
+                "optimizer_type": "lars_adam",
+                "learning_rate": "6e-4"
             }
         },
         "qat": {
             "number_of_epochs": 4,
             "checkpoints": {
-                "dir": "./checkpoints/qat_checkpoints",
-                "save_frequency": "1"
+                "dir": "./checkpoints/qat_checkpoints"
             },
-            "learning_rate": "6e-4",
-            "cosine_annealing_scheduler_config": {
+            "lr_scheduler": {
+                "type": "cosine_annealing",
                 "warmup_percentage": 0.05,
                 "min_lr": 1e-05
+            },
+            "optimizer": {
+                "optimizer_type": "lars_adam",
+                "learning_rate": "6e-4"
             }
         }
-    },
-    "optimizer": {
-        "learning_rate_scheduler": "cosine_annealing"
     },
     "processing": {
         "shader_accurate": false
