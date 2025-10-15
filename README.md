@@ -23,7 +23,7 @@ These examples walk through key workflows such as training, fine-tuning, quantiz
 
 ### Included tutorials:
 
-#### 1.  [Training](./tutorials/nss/model_training_example.ipynb)
+#### 1. [Training](./tutorials/nss/model_training_example.ipynb)
 This notebook shows how to train the Neural Super Sampling model from scratch.
 
 #### 2. [Quantization-aware training and exporting](./tutorials/nss/model_qat_example.ipynb)
@@ -34,6 +34,9 @@ This notebook shows how to run evaluation of a trained Neural Super Sampling mod
 
 #### 4. [Fine-tuning](./tutorials/nss/model_finetuning_example.ipynb)
 This notebook shows how to run fine-tuning of the Neural Super Sampling model using pretrained model weights.
+
+#### 5. [Adding a custom model](./tutorials/nss/custom_model_example.ipynb)
+This notebook shows how to add your own custom model to use within the Neural Graphics Model Gym.
 
 ## Prerequisites
 To run these tutorials, the following are required:
