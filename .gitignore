@@ -18,8 +18,9 @@ nb-env/
 *.ipynb_checkpoints
 
 data/*
-tutorials/nss/checkpoints/*
-tutorials/nss/output/*
-tutorials/nss/tensorboard-logs/*
+
+tutorials/*/checkpoints/*
+tutorials/*/output/*
+tutorials/*/tensorboard-logs/*
 
 report.html
