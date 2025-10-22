@@ -8,8 +8,6 @@ __pycache__
 .vscode
 .idea
 
-.slangtorch_cache/
-*.lock
 .cache/
 
 venv/
@@ -17,10 +15,9 @@ nb-env/
 
 *.ipynb_checkpoints
 
-data/*
-
-tutorials/*/checkpoints/*
-tutorials/*/output/*
-tutorials/*/tensorboard-logs/*
+tutorials/data/*
+tutorials/checkpoints/*
+tutorials/output/*
+tutorials/tensorboard-logs/*
 
 report.html

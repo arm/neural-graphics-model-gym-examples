@@ -23,19 +23,19 @@ These examples walk through key workflows such as training, fine-tuning, quantiz
 
 ### Included tutorials:
 
-#### 1. [Training](./tutorials/nss/model_training_example.ipynb)
+#### 1. [Training](./tutorials/model_training_example.ipynb)
 This notebook shows how to train the Neural Super Sampling model from scratch.
 
-#### 2. [Quantization-aware training and exporting](./tutorials/nss/model_qat_example.ipynb)
+#### 2. [Quantization-aware training and exporting](./tutorials/model_qat_example.ipynb)
 This notebook shows how to perform quantization-aware training (QAT) and export the Neural Super Sampling model to a `VGF` file.
 
-#### 3. [Evaluation](./tutorials/nss/model_evaluation_example.ipynb)
+#### 3. [Evaluation](./tutorials/model_evaluation_example.ipynb)
 This notebook shows how to run evaluation of a trained Neural Super Sampling model on a sample dataset.
 
-#### 4. [Fine-tuning](./tutorials/nss/model_finetuning_example.ipynb)
+#### 4. [Fine-tuning](./tutorials/model_finetuning_example.ipynb)
 This notebook shows how to run fine-tuning of the Neural Super Sampling model using pretrained model weights.
 
-#### 5. [Adding a custom model](./tutorials/nss/custom_model_example.ipynb)
+#### 5. [Adding a custom model](./tutorials/custom_model_example.ipynb)
 This notebook shows how to add your own custom model to use within the Neural Graphics Model Gym.
 
 ## Prerequisites
@@ -93,7 +93,7 @@ To run all cells of the notebook, navigate to `Run > Run All Cells`. Alternative
 
 ### Running from VSCode
 
-Navigate to the `tutorials/nss/` directory and open a notebook e.g. `model_training_example.ipynb`.
+Navigate to the `tutorials/` directory and open a notebook e.g. `model_training_example.ipynb`.
 
 Click **Select Kernel** upper-right corner of the notebook, then choose the one inside `nb-env`.
 

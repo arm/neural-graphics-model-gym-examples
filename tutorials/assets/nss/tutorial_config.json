@@ -7,21 +7,21 @@
         "name": "NSS",
         "version": "1",
         "path": {
-            "train": "../../data/nss/datasets/train/bistro",
-            "validation": "../../data/nss/datasets/val/bistro",
-            "test": "../../data/nss/datasets/test/"
+            "train": "./data/nss/datasets/train/bistro",
+            "validation": "./data/nss/datasets/val/bistro",
+            "test": "./data/nss/datasets/test"
         },
         "exposure": 2,
         "tonemapper": "reinhard",
         "health_check": false,
-        "recurrent_samples": 8,
+        "recurrent_samples": 16,
         "gt_augmentation": true,
         "num_workers": 4,
         "prefetch_factor": 1
     },
     "output": {
         "dir": "./output",
-        "export_frame_png": false,
+        "export_frame_png": true,
         "tensorboard_output_dir": "./tensorboard-logs",
         "export": {
             "dynamic_shape": true,
@@ -32,36 +32,36 @@
         "batch_size": 8,
         "scale": 2.0,
         "seed": 123456,
-        "perform_validate": true,
+        "perform_validate": false,
         "validate_frequency": 1,
-        "finetune": true,
+        "finetune": false,
         "resume": false,
-        "pretrained_weights": "../../data/nss/weights/nss_v0.1.0_fp32.pt",
+        "pretrained_weights": "./data/nss/weights/nss_v0.1.0_fp32.pt",
         "loss_fn": "loss_v1",
         "fp32": {
-            "number_of_epochs": 4,
+            "number_of_epochs": 15,
             "checkpoints": {
                 "dir": "./checkpoints"
             },
             "lr_scheduler": {
                 "type": "cosine_annealing",
                 "warmup_percentage": 0.05,
-                "min_lr": 6e-5
+                "min_lr": 2e-4
             },
             "optimizer": {
                 "optimizer_type": "lars_adam",
-                "learning_rate": "6e-4"
+                "learning_rate": "2e-3"
             }
         },
         "qat": {
-            "number_of_epochs": 4,
+            "number_of_epochs": 2,
             "checkpoints": {
                 "dir": "./checkpoints/qat_checkpoints"
             },
             "lr_scheduler": {
                 "type": "cosine_annealing",
                 "warmup_percentage": 0.05,
-                "min_lr": 1e-05
+                "min_lr": 1e-5
             },
             "optimizer": {
                 "optimizer_type": "lars_adam",
@@ -73,3 +73,4 @@
         "shader_accurate": false
     }
 }
+

@@ -6,8 +6,8 @@ from pathlib import Path
 
 import huggingface_hub as hf
 
-weights_dir = Path("data/nss/weights")
-datasets_dir = Path("data/nss/datasets")
+weights_dir = Path("tutorials/data/nss/weights")
+datasets_dir = Path("tutorials/data/nss/datasets")
 
 
 def download_pretrained_weights():
