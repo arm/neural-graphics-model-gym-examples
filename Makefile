@@ -20,6 +20,11 @@ test: # run notebook tutorial tests
 	@echo "Running notebook tutorial tests"
 	python -m unittest discover -s tests/ -p 'test_*.py'
 
+clean: # Remove temporary directories
+	@echo "Removing temporary directories"
+	@find . -type d -name "__pycache__" -exec rm -rf {} +
+	@find . -type d -name ".ipynb_checkpoints" -exec rm -rf {} +
+	@find . -type f -name "report.html" -delete
 
 lint: blocklint nb-lint # Run blocklint non-inclusive language checks and linting of all Python files recursively
 	@echo "Running linting of all files"

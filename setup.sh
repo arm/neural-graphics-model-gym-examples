@@ -22,13 +22,13 @@ pip install -r requirements.txt
 
 # Make required runtime directories
 echo "* Creating required runtime directories"
-mkdir -p ./tutorials/nss/output/vgf
-mkdir -p ./tutorials/nss/checkpoints/qat_checkpoints
-mkdir -p ./tutorials/nss/tensorboard-logs
+mkdir -p ./tutorials/output/vgf
+mkdir -p ./tutorials/checkpoints/qat_checkpoints
+mkdir -p ./tutorials/tensorboard-logs
 
 # Download datasets and pretrained weights from HuggingFace
 echo "* Downloading datasets and pretrained weights"
-python ./download_resources.py
+python ./download_resources.py 2> >(tee /dev/tty)
 
 echo "* Setup finished!"
 echo "To activate the virtual environment run:"
