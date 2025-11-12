@@ -38,7 +38,7 @@ class CustomModel(BaseNGModel):
 
     def __init__(self, params: ConfigModel):
         """Set up the model."""
-        super().__init__()
+        super().__init__(params)
 
         self.model_params = params
         self.neural_network = SimpleNN()
@@ -84,5 +84,7 @@ class CustomModel(BaseNGModel):
         input_tensor = self.preprocess(inputs)
         x = self.neural_network(input_tensor)
         outputs = self.postprocess(inputs, x)
+        if isinstance(inputs, dict):
+            outputs.setdefault("motion", inputs["motion"])
 
         return outputs
