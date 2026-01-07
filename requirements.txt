@@ -1,8 +1,0 @@
-# SPDX-FileCopyrightText: <text>Copyright 2025 Arm Limited and/or
-# its affiliates <open-source-office@arm.com></text>
-# SPDX-License-Identifier: Apache-2.0
-
-ng-model-gym @ git+https://github.com/arm/neural-graphics-model-gym.git@v0.2.0
-jupyter==1.1.1
-ipykernel==6.30.0
-huggingface-hub==0.34.3

@@ -1,6 +1,60 @@
-# SPDX-FileCopyrightText: <text>Copyright 2025 Arm Limited and/or
+# SPDX-FileCopyrightText: <text>Copyright 2025-2026 Arm Limited and/or
 # its affiliates <open-source-office@arm.com></text>
 # SPDX-License-Identifier: Apache-2.0
+
+[build-system]
+requires = ["hatchling>=1.18", "versioningit>=3.3.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ng-model-gym-examples"
+dynamic = ["version"]
+description = "Tutorials demonstrating how to use the Neural Graphics Model Gym."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10, <3.13"
+authors = [{ name = "Arm Limited" }]
+
+dependencies = [
+  "ng-model-gym @ git+https://github.com/arm/neural-graphics-model-gym.git@v0.2.0",
+  "jupyter==1.1.1",
+  "ipykernel==6.30.0",
+  "huggingface-hub==0.34.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "autoflake==2.3.1",
+  "bandit==1.7.6",
+  "black==23.12.1",
+  "blocklint==0.2.4",
+  "hatch==1.15.1",
+  "isort==5.13.2",
+  "nbqa==1.9.1",
+  "pre-commit==3.6.0",
+  "pylint==3.2.6",
+  "reuse==3.0.1",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+force-include = { "README.md" = "share/ng-model-gym-examples/README.md" }
+
+[tool.hatch.version]
+source = "versioningit"
+
+[tool.versioningit]
+default-version = "0.0.0"
+
+[tool.versioningit.tag2version]
+method = { module = "version", value = "normalise_tag" }
+
+[tool.versioningit.format]
+distance = "{base_version}+{rev}" # ahead of the tag, append the commit hash
+dirty = "{base_version}+dirty"
+distance-dirty = "{base_version}+{rev}.dirty"
 
 [tool.isort]
 skip = ["nb-env", "venv"]
@@ -63,3 +117,48 @@ pylint  = ["--disable=wrong-import-order, wrong-import-position, duplicate-code,
 isort = 1
 autoflake = 1
 black = 1
+
+[tool.hatch.envs.default]
+features = ["dev"]
+
+[tool.hatch.envs.default.scripts]
+
+# Security and compliance checks
+bandit-check        = [ "python -c \"print('\\nRunning security checks\\n')\"",
+                        "python -m bandit --configfile=pyproject.toml -r -f=html -o=report.html ." ]
+blocklint           =   "python -m scripts.run_blocklint"
+copyright           = [ "python -c \"print('\\nRunning copyright header check on all files\\n')\"",
+                        "reuse lint" ]
+
+# Format
+format              = [ "python -c \"print('\\nFormatting files with black, isort and autoflake, including notebooks\\n')\"",
+                        "hatch run nb-format",
+                        "autoflake .",
+                        "isort .",
+                        "black ." ]
+nb-format           = [ "python -c \"print('\\nFormatting notebooks with black, isort and autoflake\\n')\"",
+                        "nbqa autoflake tutorials/",
+                        "nbqa isort tutorials/",
+                        "nbqa black tutorials/" ]
+
+# Lint
+lint                = [ "hatch run nb-lint",
+                        "python -m scripts.run_pylint" ]
+nb-lint             = [ "python -c \"print('\\nRunning linting of notebooks\\n')\"",
+                        "nbqa pylint tutorials/" ]
+
+# All checks above
+all-checks          = [ "hatch run bandit-check",
+                        "hatch run blocklint",
+                        "hatch run copyright",
+                        "hatch run format",
+                        "hatch run lint"]
+
+# Clean
+clean                   = "python -m scripts.clean"
+
+# Test
+test                = [ "python -c \"print('\\nRunning notebook tutorial tests\\n')\"",
+                        "python -m unittest discover -s tests/ -p 'test_*.py'" ]
+
+download-resources  =   "python scripts/download_resources.py"

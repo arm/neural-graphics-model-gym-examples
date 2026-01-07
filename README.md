@@ -1,5 +1,5 @@
 <!---
-SPDX-FileCopyrightText: Copyright 2025 Arm Limited and/or its affiliates <open-source-office@arm.com>
+SPDX-FileCopyrightText: Copyright 2025-2026 Arm Limited and/or its affiliates <open-source-office@arm.com>
 SPDX-License-Identifier: Apache-2.0
 --->
 
@@ -65,7 +65,17 @@ A setup script is provided which:
 
 The setup script can be run with:
 ```bash
-./setup.sh
+python create_env.py
+```
+
+By default the virtual environment directory is named `nb-env`. To specify a custom name, use the `--venv-name` option:
+```bash
+python create_env.py --venv-name venv-name
+```
+
+Optionally, the script can be run with the `--dev` flag to create a Hatch development environment including dependencies for uses such as testing, linting and code checking.
+```bash
+python create_env.py --dev
 ```
 
 ## Running the tutorials
@@ -75,6 +85,12 @@ Before running the tutorials, make sure the virtual environment created during [
 
 ```bash
 source nb-env/bin/activate
+```
+
+If using the Hatch development environment it must first be activated before launching Jupyter notebook by running:
+
+```bash
+hatch shell
 ```
 
 To launch the notebooks from the console, first start the Jupyter notebook server:
@@ -108,36 +124,45 @@ python -m ipykernel install --user --name=nb-env --display-name "Python (nb-env)
 You may need to reload your window (F1 -> 'Developer: Reload Window') in order to detect the new environment.
 
 ## Testing
+Tests for the tutorial notebooks can be run using Hatch. First follow the instructions in [Setup](#setup) for running the setup script with the `--dev` flag.
 
-Tests for the tutorial notebooks can be run with:
+Then run:
 ```bash
-make test
-```
-
-Make can be installed with:
-```bash
-sudo apt install make
+hatch run test
 ```
 
 ## Code contributions
-Before making a pull request for any code changes, you must run the following checks:
+Before making a pull request for any code changes, you must run certain checks.
+First follow the instructions in [Setup](#setup) for running the setup script with the `--dev` flag.
+
+Then run:
 
 ```bash
-make test       # Run all tests
-make format     # Format files (black, isort, autoflake)
-make lint       # Lints files (blocklint, pylint)
-make bandit     # Run security check
-make copyright  # Check copyright headers exist for all required files
+hatch shell
+
+hatch run test          # Run all tests
+hatch run format        # Format files (black, isort, autoflake)
+hatch run lint          # Lints files (blocklint, pylint)
+hatch run blocklint     # Runs blocklint to ensure no non-inclusive language
+hatch run bandit-check  # Run security check
+hatch run copyright     # Check copyright headers exist for all required files
+
+```
+
+**All available commands in the Hatch environment are listed under scripts when running:**
+
+```bash
+hatch env show
 ```
 
 ### pre-commit module
 
 pre-commit is used to run the checks mentioned above when making a new commit.
 
-pre-commit, and any other code checking dependencies, will be installed when running:
+pre-commit will be installed when following the instructions in [Setup](#setup) for running the setup script with the `--dev` flag, or it can be manually installed with:
 
 ```bash
-pip install -r requirements-dev.txt
+pip install pre-commit
 ```
 
 To install the pre-commit git hook, run the following command
