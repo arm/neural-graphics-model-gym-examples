@@ -211,12 +211,3 @@ Individual files contain the following tag instead of the full license text.
 
 This enables machine processing of license information based on the SPDX
 License Identifiers that are here available: http://spdx.org/licenses/
-
-
-## Other Projects
-
-This project contains code and binaries from other projects as listed below. The original
-license text is included in, or next to, those files.
-
-- The [Amazon Lumberyard Bistro](https://developer.nvidia.com/orca/amazon-lumberyard-bistro) project.
-  This is licensed under the Creative Commons CC-BY 4.0 license.
