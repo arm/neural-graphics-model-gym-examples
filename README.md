@@ -2,8 +2,13 @@
 SPDX-FileCopyrightText: Copyright 2025-2026 Arm Limited and/or its affiliates <open-source-office@arm.com>
 SPDX-License-Identifier: Apache-2.0
 --->
-
-# Neural Graphics Model Gym Examples
+<h1 align="center">Neural Graphics Model Gym Examples</h1>
+<p align="center">
+<a href="https://github.com/arm/neural-graphics-model-gym"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-neural_graphics_model_gym-red?logo=github"></a>
+<a href="https://huggingface.co/Arm/neural-super-sampling"><img alt="Model Card" src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-neural%20super%20sampling%20-blue"></a>
+<a href="https://github.com/arm/neural-graphics-model-gym-examples/blob/main/LICENSE.md"><img alt="License" src="https://img.shields.io/badge/license-Apache%20License%202.0-green"></a>
+<img alt="Python versions" src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue">
+</p>
 
 ## Table of contents
 
