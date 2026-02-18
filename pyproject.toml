@@ -20,6 +20,7 @@ dependencies = [
   "jupyter==1.1.1",
   "ipykernel==6.30.0",
   "huggingface-hub==0.34.3",
+  "setuptools==80.10.2",
 ]
 
 [project.optional-dependencies]
