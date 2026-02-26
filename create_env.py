@@ -47,7 +47,17 @@ def main(args) -> None:
 
     else:
         print("* Creating Hatch environment")
-        run([venv_py, "-m", "pip", "install", "hatch==1.15.1", "click<=8.2.0"])
+        run(
+            [
+                venv_py,
+                "-m",
+                "pip",
+                "install",
+                "hatch==1.15.1",
+                "click<=8.2.0",
+                "virtualenv==20.39.0",
+            ]
+        )
         run([venv_py, "-m", "hatch", "-v", "env", "create"])
 
     print("* Creating required runtime directories")
