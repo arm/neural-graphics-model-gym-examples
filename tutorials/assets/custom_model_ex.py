@@ -1,13 +1,13 @@
-# SPDX-FileCopyrightText: <text>Copyright 2025 Arm Limited and/or
+# SPDX-FileCopyrightText: <text>Copyright 2025-2026 Arm Limited and/or
 # its affiliates <open-source-office@arm.com></text>
 # SPDX-License-Identifier: Apache-2.0
 
 
 import torch
+from ng_model_gym.core.config.config_model import ConfigModel
 from ng_model_gym.core.model.base_ng_model import BaseNGModel
 from ng_model_gym.core.model.layers.conv_block import ConvBlock
 from ng_model_gym.core.model.model_registry import register_model
-from ng_model_gym.core.utils.config_model import ConfigModel
 
 
 class SimpleNN(torch.nn.Module):
@@ -63,7 +63,7 @@ class CustomModel(BaseNGModel):
 
         return input_tensor
 
-    def postprocess(self, inputs, model_output):
+    def postprocess(self, inputs, model_output, sequence_shape=None):
         """Postprocess the neural network outputs"""
 
         output = model_output
@@ -74,7 +74,11 @@ class CustomModel(BaseNGModel):
             mode="bilinear",
             align_corners=False,
         )
-        output = output[: inputs["motion"].shape[0]]
+        if sequence_shape is not None:
+            batch_size, time_steps = sequence_shape
+            output = output.reshape(batch_size, time_steps, *output.shape[1:])
+        else:
+            output = output[: inputs["motion"].shape[0]]
 
         return {"output": output, "out_filtered": output}
 
@@ -82,8 +86,16 @@ class CustomModel(BaseNGModel):
         """Forward pass"""
 
         input_tensor = self.preprocess(inputs)
+        sequence_shape = None
+        if input_tensor.ndim == 5:
+            batch_size, time_steps, channels, height, width = input_tensor.shape
+            input_tensor = input_tensor.reshape(
+                batch_size * time_steps, channels, height, width
+            )
+            sequence_shape = (batch_size, time_steps)
+
         x = self.neural_network(input_tensor)
-        outputs = self.postprocess(inputs, x)
+        outputs = self.postprocess(inputs, x, sequence_shape=sequence_shape)
         if isinstance(inputs, dict):
             outputs.setdefault("motion", inputs["motion"])
 
