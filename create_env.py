@@ -63,9 +63,10 @@ def main(args) -> None:
     print("* Creating required runtime directories")
 
     for d in [
+        "tutorials/output/checkpoints/fp32",
+        "tutorials/output/checkpoints/qat",
+        "tutorials/output/tensorboard-logs",
         "tutorials/output/vgf",
-        "tutorials/checkpoints/qat_checkpoints",
-        "tutorials/tensorboard-logs",
     ]:
         Path(d).mkdir(parents=True, exist_ok=True)
 

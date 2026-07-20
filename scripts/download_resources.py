@@ -15,10 +15,11 @@ def download_pretrained_weights():
 
     hf.snapshot_download(
         repo_id="Arm/neural-super-sampling",
-        allow_patterns=["nss_*_fp32.pt", "config.json"],
+        allow_patterns=["nss_*_*.pt", "config.json"],
         local_dir=weights_dir,
-        revision="2e9b606acd9fa25071825a12f0764f1c3bef9480",
+        revision="3feb49cb7ee5aa295914a17c5878ffea693da8a8",
     )
+
     print(f"Downloaded pretrained weights to {weights_dir}")
 
 
@@ -39,7 +40,12 @@ def validate_downloads():
     """Validate downloads from HF"""
 
     # Validate pretrained weights
-    expected_weights = ["nss_v0.1.0_fp32.pt"]
+    expected_weights = [
+        "nss_v1_high_fp32.pt",
+        "nss_v1_high_int8.pt",
+        "nss_v1_mid_low_int8.pt",
+    ]
+
     for file_name in expected_weights:
         weights_path = weights_dir / file_name
         assert weights_path.exists(), f"Missing weight file: {file_name}"  # nosec B101

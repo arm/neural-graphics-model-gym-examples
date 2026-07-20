@@ -1,8 +1,16 @@
 {
-    "config_schema_version": "2",
+    "config_schema_version": "8",
     "model": {
         "name": "NSS",
-        "version": "1"
+        "model_source": "prebuilt",
+        "version": "1",
+        "scale": 2.0,
+        "recurrent_samples": 8,
+        "quality": "high",
+        "nss_v1_luma_derivative": true,
+        "nss_v1_sharp_theta": true,
+        "gt_history_augmentation": true,
+        "gt_history_augmentation_chance": 30.0
     },
     "dataset": {
         "name": "NSS",
@@ -10,12 +18,11 @@
         "path": {
             "train": "./data/nss/datasets/train/bistro",
             "validation": "./data/nss/datasets/val/bistro",
-            "test": "./data/nss/datasets/test/"
+            "test": "./data/nss/datasets/test"
         },
         "exposure": 2,
         "tonemapper": "reinhard",
         "health_check": false,
-        "recurrent_samples": 8,
         "gt_augmentation": true,
         "num_workers": 4,
         "prefetch_factor": 1
@@ -23,7 +30,7 @@
     "output": {
         "dir": "./output",
         "export_frame_png": false,
-        "tensorboard_output_dir": "./tensorboard-logs",
+        "tensorboard_output_dir": "./output/tensorboard-logs",
         "export": {
             "dynamic_shape": true,
             "vgf_output_dir": "./output/vgf"
@@ -37,15 +44,21 @@
     ],
     "train": {
         "batch_size": 8,
-        "scale": 2.0,
         "seed": 123456,
         "perform_validate": true,
+        "compile": false,
         "validate_frequency": 1,
         "loss_fn": "loss_v1",
+        "loss_args": {
+            "temporal_reg_weight": 0.7,
+            "alpha_reg_weight": 0.0001,
+            "temporal_reg_channels": 1,
+            "min_weight": 0.1
+        },
         "fp32": {
             "number_of_epochs": 4,
             "checkpoints": {
-                "dir": "./checkpoints"
+                "dir": "./output/checkpoints/fp32"
             },
             "lr_scheduler": {
                 "type": "cosine_annealing",
@@ -54,13 +67,14 @@
             },
             "optimizer": {
                 "optimizer_type": "lars_adam",
-                "learning_rate": "6e-3"
+                "learning_rate": "6e-3",
+                "eps": 1e-7
             }
         },
         "qat": {
             "number_of_epochs": 4,
             "checkpoints": {
-                "dir": "./checkpoints/qat_checkpoints"
+                "dir": "./output/checkpoints/qat"
             },
             "lr_scheduler": {
                 "type": "cosine_annealing",
@@ -69,11 +83,9 @@
             },
             "optimizer": {
                 "optimizer_type": "lars_adam",
-                "learning_rate": "6e-4"
+                "learning_rate": "6e-4",
+                "eps": 1e-7
             }
         }
-    },
-    "processing": {
-        "shader_accurate": false
     }
 }
