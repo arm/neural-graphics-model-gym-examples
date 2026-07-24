@@ -32,7 +32,7 @@ class SimpleNN(torch.nn.Module):
 
 
 # Model must use the register_model decorator to be picked up
-@register_model(name="custom_model", version="1")
+@register_model(name="custom_model-v1")
 class CustomModel(BaseNGModel):
     """Custom Model which inherits from BaseNGModel"""
 
