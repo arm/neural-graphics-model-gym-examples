@@ -15,9 +15,9 @@
         "name": "NSS",
         "version": "1",
         "path": {
-            "train": "./data/nss/datasets/train/bistro",
-            "validation": "./data/nss/datasets/val/bistro",
-            "test": "./data/nss/datasets/test"
+            "train": "./data/datasets/train/bistro",
+            "validation": "./data/datasets/val/bistro",
+            "test": "./data/datasets/test"
         },
         "exposure": 2,
         "tonemapper": "reinhard",
