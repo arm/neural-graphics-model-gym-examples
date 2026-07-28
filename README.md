@@ -15,34 +15,41 @@ SPDX-License-Identifier: Apache-2.0
 ## Table of contents
 
 1. [Introduction](#introduction)
-2. [Prerequisites](#prerequisites)
-3. [Setup](#setup)
-4. [Running the tutorials](#running-the-tutorials)
-5. [Testing](#testing)
-6. [Code contributions](#code-contributions)
-6. [License](#license)
-7. [Trademarks and copyrights](#trademarks-and-copyrights)
+2. [Included tutorials](#included-tutorials)
+    * [NSS](#nss)
+    * [Generic](#generic)
+3. [Prerequisites](#prerequisites)
+4. [Setup](#setup)
+5. [Running the tutorials](#running-the-tutorials)
+    * [Running from the console](#running-from-the-console)
+    * [Running from VSCode](#running-from-vscode)
+6. [Testing](#testing)
+7. [Code contributions](#code-contributions)
+8. [License](#license)
+9. [Trademarks and copyrights](#trademarks-and-copyrights)
 
 ## Introduction
 This repository contains Jupyter® notebook tutorials demonstrating how to use the [Neural Graphics Model Gym](https://github.com/arm/neural-graphics-model-gym) Python® package.
 
 These examples walk through key workflows such as training, fine-tuning, quantization-aware training, exporting, and evaluation using the **Neural Super Sampling (NSS)** PyTorch model.
 
-### Included tutorials:
+## Included tutorials
 
-#### 1. [Training](./tutorials/model_training_example.ipynb)
+### NSS
+#### 1. [Training](./tutorials/nss/nss_training_example.ipynb)
 This notebook shows how to train the Neural Super Sampling model from scratch.
 
-#### 2. [Quantization-aware training and exporting](./tutorials/model_qat_example.ipynb)
+#### 2. [Quantization-aware training and exporting](./tutorials/nss/nss_qat_example.ipynb)
 This notebook shows how to perform quantization-aware training (QAT) and export the Neural Super Sampling model to a `VGF` file.
 
-#### 3. [Evaluation](./tutorials/model_evaluation_example.ipynb)
+#### 3. [Evaluation](./tutorials/nss/nss_evaluation_example.ipynb)
 This notebook shows how to run evaluation of a trained Neural Super Sampling model on a sample dataset.
 
-#### 4. [Fine-tuning](./tutorials/model_finetuning_example.ipynb)
+#### 4. [Fine-tuning](./tutorials/nss/nss_finetuning_example.ipynb)
 This notebook shows how to run fine-tuning of the Neural Super Sampling model using pretrained model weights.
 
-#### 5. [Adding a custom model](./tutorials/custom_model_example.ipynb)
+### Generic
+#### [Adding a custom model](./tutorials/generic/custom_model_example.ipynb)
 This notebook shows how to add your own custom model to use within the Neural Graphics Model Gym.
 
 ## Prerequisites
@@ -54,7 +61,7 @@ To run these tutorials, the following are required:
 * Python development package (e.g. `python3-dev`)
 * Python3.X-venv apt package
 * NVIDIA® CUDA® capable GPU
-* CUDA Toolkit v12.8 or later
+* CUDA Toolkit v13.1.1 or later
 * Git LFS
 
 ### Windows Environment
@@ -108,7 +115,7 @@ jupyter notebook
 
 A URL like `http://127.0.0.1:8888/tree?token=...` will be output to the terminal. If a new browser window isn't automatically opened, copy and paste this link into your browser to open the notebook interface.
 
-In the Jupyter interface, navigate to the `tutorials/` directory and open a notebook e.g. `model_training_example.ipynb`.
+In the Jupyter interface, navigate to the `tutorials/` directory and open a notebook e.g. `nss/nss_training_example.ipynb`.
 
 Set the Python interpreter of the notebook to the virtual environment (`nb-env`) in `Kernel > Change Kernel`.
 
@@ -116,7 +123,7 @@ To run all cells of the notebook, navigate to `Run > Run All Cells`. Alternative
 
 ### Running from VSCode
 
-Navigate to the `tutorials/` directory and open a notebook e.g. `model_training_example.ipynb`.
+Navigate to the `tutorials/` directory and open a notebook e.g. `nss/nss_training_example.ipynb`.
 
 Click **Select Kernel** upper-right corner of the notebook, then choose the one inside `nb-env`.
 
@@ -195,3 +202,4 @@ Neural Graphics Model Gym Examples is licensed under [Apache License 2.0](./LICE
 * Ubuntu® is a registered trademark of Canonical.
 * “Jupyter” and the Jupyter logos are trademarks or registered trademarks of LF Charities.
 * NVIDIA and the NVIDIA logo are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.
+* Visual Studio Code, VS Code, and the Visual Studio Code icon are trademarks of Microsoft Corporation. All rights reserved.

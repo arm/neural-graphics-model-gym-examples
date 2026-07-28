@@ -28,15 +28,14 @@ def main(args) -> None:
     else:
         print(f"* Reusing existing virtual environment [{venv_dir}]")
 
-    if platform.system() == "Linux":
-        venv_cmd = Path(venv_dir) / "bin"
-        venv_py = venv_cmd / "python"
-        venv_activate = f"source {venv_cmd / 'activate'}"
-
-    else:
+    if platform.system() != "Linux":
         raise OSError(
             f"Unsupported OS: {platform.system()!r} for setup. Requires Linux."
         )
+
+    venv_cmd = Path(venv_dir) / "bin"
+    venv_py = venv_cmd / "python"
+    venv_activate = f"source {venv_cmd / 'activate'}"
 
     print("* Upgrading pip")
     run([venv_py, "-m", "pip", "install", "--upgrade", "pip"])
@@ -53,7 +52,7 @@ def main(args) -> None:
                 "-m",
                 "pip",
                 "install",
-                "hatch==1.15.1",
+                "hatch==1.16.2",
                 "click<=8.2.0",
                 "virtualenv==20.39.0",
             ]
@@ -62,13 +61,15 @@ def main(args) -> None:
 
     print("* Creating required runtime directories")
 
-    for d in [
-        "tutorials/output/checkpoints/fp32",
-        "tutorials/output/checkpoints/qat",
-        "tutorials/output/tensorboard-logs",
-        "tutorials/output/vgf",
-    ]:
-        Path(d).mkdir(parents=True, exist_ok=True)
+    USECASES = ["nss", "generic"]
+    for usecase in USECASES:
+        for d in [
+            f"tutorials/{usecase}/output/checkpoints/fp32",
+            f"tutorials/{usecase}/output/checkpoints/qat",
+            f"tutorials/{usecase}/output/tensorboard-logs",
+            f"tutorials/{usecase}/output/vgf",
+        ]:
+            Path(d).mkdir(parents=True, exist_ok=True)
 
     if not args.skip_downloads:
         print("* Downloading datasets and pretrained weights")
