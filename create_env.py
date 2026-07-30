@@ -61,7 +61,7 @@ def main(args) -> None:
 
     print("* Creating required runtime directories")
 
-    USECASES = ["nss", "generic"]
+    USECASES = ["nss", "nfru", "generic"]
     for usecase in USECASES:
         for d in [
             f"tutorials/{usecase}/output/checkpoints/fp32",

@@ -1,0 +1,114 @@
+{
+    "config_schema_version": "9",
+    "model": {
+        "name": "NFRU-v1",
+        "model_source": "prebuilt",
+        "scale_factor": 2.0,
+        "legacy_nfru_capture_paths": [],
+        "dynamic_mask_is_runtime_accurate": false,
+        "mv_similarity_threshold": null
+    },
+    "dataset": {
+        "name": "NFRU",
+        "version": "1",
+        "path": {
+            "train": "./data/datasets/train",
+            "validation": "./data/datasets/val",
+            "test": "./data/datasets/test"
+        },
+        "color_preprocessing": {
+            "train": {
+                "pipeline": [
+                    [
+                        "reinhard"
+                    ],
+                    [
+                        "none",
+                        "contrast",
+                        "saturation",
+                        "temperature_tint"
+                    ]
+                ],
+                "exposure": [
+                    1.0,
+                    2.5
+                ]
+            },
+            "validation": {
+                "pipeline": [
+                    "reinhard"
+                ],
+                "exposure": 2.0
+            },
+            "test": {
+                "pipeline": [
+                    "reinhard"
+                ],
+                "exposure": 2.0
+            }
+        },
+        "health_check": false,
+        "gt_augmentation": true,
+        "num_workers": 4,
+        "prefetch_factor": 1,
+        "align_data": true
+    },
+    "output": {
+        "dir": "./output",
+        "export_frame_png": true,
+        "tensorboard_output_dir": "./output/tensorboard-logs",
+        "export": {
+            "dynamic_shape": true,
+            "vgf_output_dir": "./output/vgf"
+        }
+    },
+    "metrics": [
+        "PSNR",
+        "SSIM",
+        "STLPIPS"
+    ],
+    "train": {
+        "batch_size": 1,
+        "seed": 123456,
+        "perform_validate": true,
+        "compile": false,
+        "validate_frequency": 1,
+        "loss_fn": "lpips_spatial_loss_v1",
+        "loss_args": {
+            "alpha": 0.0308
+        },
+        "fp32": {
+            "number_of_epochs": 7,
+            "checkpoints": {
+                "dir": "./output/checkpoints/fp32"
+            },
+            "lr_scheduler": {
+                "type": "cosine_annealing",
+                "warmup_percentage": 0.0941,
+                "min_lr": 1.10e-6
+            },
+            "optimizer": {
+                "optimizer_type": "adam",
+                "learning_rate": "4.54e-5",
+                "eps": 1e-07
+            }
+        },
+        "qat": {
+            "number_of_epochs": 6,
+            "checkpoints": {
+                "dir": "./output/checkpoints/qat"
+            },
+            "lr_scheduler": {
+                "type": "cosine_annealing",
+                "warmup_percentage": 0.1,
+                "min_lr": 1e-06
+            },
+            "optimizer": {
+                "optimizer_type": "lars_adam",
+                "learning_rate": "1e-4",
+                "eps": 1e-7
+            }
+        }
+    }
+}
+

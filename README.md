@@ -17,6 +17,7 @@ SPDX-License-Identifier: Apache-2.0
 1. [Introduction](#introduction)
 2. [Included tutorials](#included-tutorials)
     * [NSS](#nss)
+    * [NFRU](#nfru)
     * [Generic](#generic)
 3. [Prerequisites](#prerequisites)
 4. [Setup](#setup)
@@ -31,7 +32,7 @@ SPDX-License-Identifier: Apache-2.0
 ## Introduction
 This repository contains Jupyter® notebook tutorials demonstrating how to use the [Neural Graphics Model Gym](https://github.com/arm/neural-graphics-model-gym) Python® package.
 
-These examples walk through key workflows such as training, fine-tuning, quantization-aware training, exporting, and evaluation using the **Neural Super Sampling (NSS)** PyTorch model.
+These examples walk through key workflows such as training, fine-tuning, quantization-aware training, exporting, and evaluation using the **Neural Super Sampling (NSS)** and **Neural Frame Rate Upscaling (NFRU)** PyTorch models.
 
 ## Included tutorials
 
@@ -47,6 +48,19 @@ This notebook shows how to run evaluation of a trained Neural Super Sampling mod
 
 #### 4. [Fine-tuning](./tutorials/nss/nss_finetuning_example.ipynb)
 This notebook shows how to run fine-tuning of the Neural Super Sampling model using pretrained model weights.
+
+### NFRU
+#### 1. [Training](./tutorials/nfru/nfru_training_example.ipynb)
+This notebook shows how to train the Neural Frame Rate Upscaling model from scratch.
+
+#### 2. [Quantization-aware training and exporting](./tutorials/nfru/nfru_qat_example.ipynb)
+This notebook shows how to perform quantization-aware training (QAT) and export the Neural Frame Rate Upscaling model to a `VGF` file.
+
+#### 3. [Evaluation](./tutorials/nfru/nfru_evaluation_example.ipynb)
+This notebook shows how to run evaluation of a trained Neural Frame Rate Upscaling model on a sample dataset.
+
+#### 4. [Fine-tuning](./tutorials/nfru/nfru_finetuning_example.ipynb)
+This notebook shows how to run fine-tuning of the Neural Frame Rate Upscaling model using pretrained model weights.
 
 ### Generic
 #### [Adding a custom model](./tutorials/generic/custom_model_example.ipynb)
