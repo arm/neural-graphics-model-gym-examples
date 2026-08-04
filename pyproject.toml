@@ -16,10 +16,10 @@ requires-python = ">=3.10, <3.13"
 authors = [{ name = "Arm Limited" }]
 
 dependencies = [
-  "ng-model-gym @ git+https://github.com/arm/neural-graphics-model-gym.git@5821900",
+  "ng-model-gym @ git+https://github.com/arm/neural-graphics-model-gym.git@v0.4.0",
   "jupyter==1.1.1",
   "ipykernel==6.30.0",
-  "huggingface-hub==0.34.3",
+  "huggingface-hub==1.13.0",
   "setuptools==80.10.2",
 ]
 
