@@ -1,9 +1,10 @@
 {
-    "config_schema_version": "9",
+    "config_schema_version": "10",
     "model": {
         "name": "NFRU-v1",
         "model_source": "prebuilt",
         "scale_factor": 2.0,
+        "processing_backend": "slang",
         "legacy_nfru_capture_paths": [],
         "dynamic_mask_is_runtime_accurate": false,
         "mv_similarity_threshold": null
@@ -56,6 +57,7 @@
     "output": {
         "dir": "./output",
         "export_frame_png": true,
+        "export_frame_exr": false,
         "tensorboard_output_dir": "./output/tensorboard-logs",
         "export": {
             "dynamic_shape": true,

@@ -12,11 +12,11 @@ dynamic = ["version"]
 description = "Tutorials demonstrating how to use the Neural Graphics Model Gym."
 readme = "README.md"
 license = "Apache-2.0"
-requires-python = ">=3.10, <3.13"
+requires-python = ">=3.11, <3.14"
 authors = [{ name = "Arm Limited" }]
 
 dependencies = [
-  "ng-model-gym @ git+https://github.com/arm/neural-graphics-model-gym.git@v0.4.0",
+  "ng-model-gym @ git+https://github.com/arm/neural-graphics-model-gym.git@55b5b77",
   "jupyter==1.1.1",
   "ipykernel==6.30.0",
   "huggingface-hub==1.13.0",
