@@ -10,6 +10,33 @@ import venv
 from pathlib import Path
 
 
+def check_python_version() -> None:
+    """Check the running Python version is supported for environment setup."""
+    supported_python_versions = [(3, 11), (3, 12), (3, 13)]
+    current_python_version = (
+        f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+    )
+    if (
+        sys.version_info.major,
+        sys.version_info.minor,
+    ) not in supported_python_versions:
+        raise OSError(
+            "Unsupported Python version for setup. Requires "
+            + ", ".join(
+                f"{major}.{minor}" for major, minor in supported_python_versions
+            )
+            + f" (got {current_python_version})."
+        )
+
+
+def check_platform() -> None:
+    """Check the running OS is supported for environment setup."""
+    if platform.system() != "Linux":
+        raise OSError(
+            f"Unsupported OS: {platform.system()!r} for setup. Requires Linux."
+        )
+
+
 def run(cmd, **kwargs):
     """Run commands."""
     print("*", " ".join(map(str, cmd)))
@@ -27,11 +54,6 @@ def main(args) -> None:
         venv.EnvBuilder(with_pip=True).create(venv_dir)
     else:
         print(f"* Reusing existing virtual environment [{venv_dir}]")
-
-    if platform.system() != "Linux":
-        raise OSError(
-            f"Unsupported OS: {platform.system()!r} for setup. Requires Linux."
-        )
 
     venv_cmd = Path(venv_dir) / "bin"
     venv_py = venv_cmd / "python"
@@ -137,4 +159,6 @@ if __name__ == "__main__":
 
     parsed_args = parser.parse_args()
 
-    sys.exit(main(parser.parse_args()))
+    check_python_version()
+    check_platform()
+    sys.exit(main(parsed_args))

@@ -1,5 +1,5 @@
 {
-    "config_schema_version": "9",
+    "config_schema_version": "10",
     "model": {
         "name": "custom_model-v1",
         "model_source": "custom",
@@ -23,6 +23,7 @@
     "output": {
         "dir": "./output",
         "export_frame_png": false,
+        "export_frame_exr": false,
         "tensorboard_output_dir": "./output/tensorboard-logs",
         "export": {
             "dynamic_shape": true,

@@ -1,11 +1,12 @@
 {
-    "config_schema_version": "9",
+    "config_schema_version": "10",
     "model": {
         "name": "NSS-v1",
         "model_source": "prebuilt",
         "scale": 2.0,
         "recurrent_samples": 8,
         "quality": "high",
+        "processing_backend": "slang",
         "nss_v1_luma_derivative": true,
         "nss_v1_sharp_theta": true,
         "gt_history_augmentation": true,
@@ -29,6 +30,7 @@
     "output": {
         "dir": "./output",
         "export_frame_png": false,
+        "export_frame_exr": false,
         "tensorboard_output_dir": "./output/tensorboard-logs",
         "export": {
             "dynamic_shape": true,
